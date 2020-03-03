@@ -12,57 +12,98 @@ inquirer.prompt([
     {
         message: "What is the engineer name?",
         name: "engineerName",
-        validate: function (input) {
-            var done = this.async();
-            if (typeof input == 'number') {
-                done("Must enter a name.", false);
-            }
-            done(null, true);
+        validate: function(input) {
+            let done = this.async();
+            validStr(input, "name", done);
         }
     },
     {
         message: "What is the engineer id?",
-        name: "engineerId"
+        name: "engineerId",
+        validate: function(input) {
+            let done = this.async();
+            validNum(input, "id", done);
+        }
     },
     {
         message: "What is the engineer email?",
-        name: "engineerEmail"
+        name: "engineerEmail",
+        validate: function(input) {
+            let done = this.async();
+            validStr(input, "email", done);
+        }
     },
     {
         message: "What is the engineer gitHub username?",
-        name: "engineerGit"
+        name: "engineerGit",
+        validate: function(input) {
+            let done = this.async();
+            validStr(input, "gitHub username", done);
+        }
     },
     {
         message: "What is the intern name?",
-        name: "internName"
+        name: "internName",
+        validate: function(input) {
+            let done = this.async();
+            validStr(input, "name", done);
+        }
     },
     {
         message: "What is the intern id?",
-        name: "internId"
+        name: "internId",
+        validate: function(input) {
+            let done = this.async();
+            validNum(input, "id", done);
+        }
     },
     {
         message: "What is the intern email?",
-        name: "internEmail"
+        name: "internEmail",
+        validate: function(input) {
+            let done = this.async();
+            validStr(input, "email", done);
+        }
     },
     {
         message: "What is the name of the interns school?",
-        name: "internSchool"
+        name: "internSchool",
+        validate: function(input) {
+            let done = this.async();
+            validStr(input, "school name", done);
+        }
     },
     {
         message: "What is the manager name?",
-        name: "managerName"
+        name: "managerName",
+        validate: function(input) {
+            let done = this.async();
+            validStr(input, "name", done);
+        }
     },
     {
         message: "What is the manager id?",
-        name: "managerId"
+        name: "managerId",
+        validate: function(input) {
+            let done = this.async();
+            validNum(input, "id", done);
+        } 
     },
     {
         message: "What is the manager email?",
-        name: "managerEmail"
+        name: "managerEmail",
+        validate: function(input) {
+            let done = this.async();
+            validStr(input, "email", done);
+        }
     },
     {
         message: "Whats is the manager office number?",
-        name: "managerOffice"
+        name: "managerOffice",
+        validate: function(input) {
+            let done = this.async();
+            validNum(input, "office number", done);
+        }
     }
 ]).then(function(response) {
     const engineer = new Engineer(response.engineerName, response.engineerId, response.engineerEmail, response.engineerGit);
@@ -72,3 +113,11 @@ inquirer.prompt([
     const employees = [engineer, intern, manager];
     fs.writeFileSync("./output/index.html", render(employees), "utf-8");
 });
+
+function validStr(input, name, done) {
+    isNaN(parseInt(input)) === true ? done(null, true) : done(`Please enter a valid ${name}.`, false);  
+}
+
+function validNum(input, name, done) {
+    isNaN(parseInt(input)) === false ? done(null, true) : done(`Please enter a valid ${name} number.`, false);
+}
