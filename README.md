@@ -1,2 +1,2 @@
 # TeamGenerator
-Generate your team directly from your IDE to and Html webpage.
+Generate your team directly from your IDE to an Html webpage.
