@@ -11,7 +11,14 @@ const render = require("./lib/htmlRenderer");
 inquirer.prompt([
     {
         message: "What is the engineer name?",
-        name: "engineerName"
+        name: "engineerName",
+        validate: function (input) {
+            var done = this.async();
+            if (typeof input == 'number') {
+                done("Must enter a name.", false);
+            }
+            done(null, true);
+        }
     },
     {
         message: "What is the engineer id?",
