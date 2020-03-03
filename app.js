@@ -60,7 +60,7 @@ inquirer.prompt([
 ]).then(function(response) {
     const engineer = new Engineer(response.engineerName, response.engineerId, response.engineerEmail, response.engineerGit);
     const intern = new Intern(response.internName, response.internId, response.internEmail, response.internSchool);
-    const manager = new Manager(response.managerName, response.managerId, response.managerEmail, response.man);
+    const manager = new Manager(response.managerName, response.managerId, response.managerEmail, response.managerOffice);
 
     const employees = [engineer, intern, manager];
     fs.writeFileSync("./output/index.html", render(employees), "utf-8");
